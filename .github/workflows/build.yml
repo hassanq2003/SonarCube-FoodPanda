@@ -23,9 +23,17 @@ jobs:
       - name: Install Build Wrapper
         uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v5
 
-      # Build your project with build-wrapper
-      - name: Build with MSBuild
+      # Compile your single file with g++
+      - name: Compile with g++
         run: |
-          mkdir build
-          cd build
-          build-wrapper-win-x86-64.exe --out-dir ../${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild ../YourPro_
+          build-wrapper-win-x86-64.exe --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} g++ Source.cpp -o app.exe
+
+      # Run SonarQube analysis
+      - name: Run SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+        with:
+          args: >
+            -Dsonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json
