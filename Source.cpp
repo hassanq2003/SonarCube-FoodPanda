@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <conio.h>
+#include <limits>  // for std::numeric_limits
 
 
 using namespace std;
