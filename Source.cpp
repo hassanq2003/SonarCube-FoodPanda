@@ -770,13 +770,15 @@ class RestaurantLinklist
 private:
     RestaurantNode* head;
 
+    std::mt19937 gen;  // Mersenne Twister engine
+
     int generateRandomID()
     {
         int id;
         bool unique;
         do
         {
-            id = rand() % 90000 + 10000;
+            id = generateId();
             unique = true;
             RestaurantNode* current = head;
             while (current != nullptr)
@@ -793,9 +795,14 @@ private:
     }
 
 public:
-    RestaurantLinklist() : head(nullptr)
+    RestaurantLinklist()
+        : head(nullptr), gen(std::random_device{}()) 
     {
-        srand(time(0));
+        // No need for srand()
+    }
+    int generateId() {
+        std::uniform_int_distribution<> dist(10000, 99999);
+        return dist(gen);  // returns random 5-digit number
     }
 
     void addRestaurant(string name, string type, string location)
