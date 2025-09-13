@@ -1487,7 +1487,6 @@ public:
             {
                 cout << "Enter new name" << endl;
                 cin >> name;
-                this->name = name;
             }
             else if (choice == 0)
             {
