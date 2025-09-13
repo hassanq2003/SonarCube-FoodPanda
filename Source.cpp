@@ -2548,9 +2548,7 @@ public:
     }
     Admin()
     {
-        this->name = "Hamas";
-        this->password = "Hamas";
-        this->email = "Hamas@gmail.com";
+        
     }
     string getpassword() {
         return password;
