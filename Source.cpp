@@ -261,7 +261,7 @@ struct Menu
     int Total_dishes;
 
     explicit Menu(string name)
-    {
+{
         Name = name;
         Total_dishes = 0;
         ID = uniqueMenu_ID;
@@ -3395,21 +3395,22 @@ void removeDuplicates(int arr[], int& size) {
 void DeliverOrders(ProcessedOrders* order, Employee* employee) {
     if (order == nullptr) {
         cout << "No orders to deliver\n";
+        return;  // ← add return so function stops here
     }
 
     int source = stringToIndex(employee->restaurant->Location);  // Index of "F-8"
-    //int locations[] = { 2, 14 };  // Indices of "F-7" and "G-11"
 
     int numLocations = totalOrders(order);
-    int* locations;
-    locations = OrdertoArray(order, locations);
+    int* locations = OrdertoArray(order, locations);  // allocates with new[]
     removeDuplicates(locations, numLocations);
-
 
     int adjacencyMatrix[38][38];
     initializeAdjMatrix(adjacencyMatrix);
     findShortestPath(source, locations, numLocations, adjacencyMatrix, 38);
+
+    delete[] locations;   // ✅ free memory
 }
+
 
 
 
