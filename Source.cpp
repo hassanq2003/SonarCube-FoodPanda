@@ -1105,6 +1105,7 @@ bool hasSpecialCharacter(string str)
             return true;
         }
     }
+    return false;
 }
 
 bool isPassWordValid(string str)
