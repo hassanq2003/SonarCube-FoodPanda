@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <conio.h>
 #include <limits>  // for std::numeric_limits
+#include <random>
 
 
 using namespace std;
