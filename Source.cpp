@@ -260,7 +260,7 @@ struct Menu
     Menu* next;
     int Total_dishes;
 
-    Menu(string name)
+    explicit Menu(string name)
     {
         Name = name;
         Total_dishes = 0;
