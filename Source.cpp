@@ -246,7 +246,7 @@ struct Dish
 struct DishHolder {
     Dish* dish;
     DishHolder* next;
-    DishHolder(Dish* d) : dish(d), next(nullptr) {}
+    explicit DishHolder(Dish* d) : dish(d), next(nullptr) {}
 };
 int Dish::uniqueDish_ID = 10000;
 //------------------------Dish Menu------------------------------------
